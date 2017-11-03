@@ -1,0 +1,30 @@
+{
+  "name": "blog",
+  "version": "1.0.0",
+  "description": "it is a test\r change",
+  "main": "src/app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": " set NODE_ENV=develop && node src/app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yijinc/blog.git"
+  },
+  "author": "yijinc",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yijinc/blog/issues"
+  },
+  "homepage": "https://github.com/yijinc/blog#readme",
+  "dependencies": {
+    "art-template": "^4.12.2",
+    "body-parser": "^1.18.2",
+    "bootstrap": "^3.3.7",
+    "cookie-parser": "^1.4.3",
+    "express": "^4.16.2",
+    "express-art-template": "^1.0.0",
+    "jquery": "^3.2.1",
+    "mongoose": "^4.12.5"
+  }
+}
