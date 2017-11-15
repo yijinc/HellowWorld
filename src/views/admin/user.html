@@ -1,0 +1,37 @@
+
+
+{{extend './common.html'}}
+
+{{block 'content'}}
+
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>序号</th>
+            <th>用户名</th>
+            <th>密码</th>
+            <th>注册时间</th>
+            <th>操作</th>
+        </tr>
+    </thead>
+    <tbody>
+
+    {{each users}}
+
+        <tr>
+            <td>{{$index+1}}</td>
+            <td>{{$value.username}}</td>
+            <td>{{$value.password}}</td>
+            <td>{{$value.signInDate}}</td>
+            <td><button class="btn btn-warning">修改</button><button class="btn btn-danger">删除</button></td>
+        </tr>
+
+    {{/each}}
+
+    </tbody>
+
+</table>
+
+
+{{/block}}

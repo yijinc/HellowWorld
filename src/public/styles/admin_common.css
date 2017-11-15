@@ -1,0 +1,7 @@
+header.navbar-static-top {
+    background: #212121;
+    background: linear-gradient(top, #373737, #212121);
+}
+
+.bs-docs-nav .navbar-header .navbar-toggle { border-color: #ccc }
+.bs-docs-nav .navbar-toggle .icon-bar { background-color: #ccc }

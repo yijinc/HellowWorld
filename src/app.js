@@ -30,6 +30,7 @@ app.use(cookieParser());
 
 app.all('/', function (req, res, next) {
     console.log('Accessing the secret section ...');
+    console.log('Cookies: ', typeof req.cookies);
     next(); // pass control to the next handler
 });
 
@@ -41,8 +42,8 @@ app.use(function(err, req, res, next) {
 
 // 将路由挂载至应用
 // app.use('/', apiRouter);
-app.use('/api',  require('./router/api/index'));
-// app.use('/admin', apiRouter);
+app.use('/api',  require('./router/api'));
+app.use('/admin', require('./router/admin'));
 
 
 app.get('/', function (req, res) {

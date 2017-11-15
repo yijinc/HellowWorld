@@ -14,6 +14,9 @@ module.exports = new mongoose.Schema({
     password     : String,
 
     //注册日期
-    signInDate   : { type: Date, default: Date.now }
+    signInDate   : { type: Date, default: Date.now },
+
+    //是否是管理员
+    isAdmin      : { type: Boolean, default: false }
 
 });

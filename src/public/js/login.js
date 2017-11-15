@@ -6,7 +6,7 @@ $(function () {
 
     var loading = false;
 
-    $('#username_reg').on('keyup', function () {
+    $('#username_login').on('keyup', function () {
         var username = $(this).val();
         if(!username) {
             $(this).parent().addClass('has-error');
@@ -16,16 +16,16 @@ $(function () {
             $(this).prev().removeClass('text-danger');
         }
 
-        var password = $('#password_reg').val();
+        var password = $('#password_login').val();
 
         if(username&&password){
-            $('#btn-regist').attr('disabled', false);
+            $('#btn-login').attr('disabled', false);
         } else {
-            $('#btn-regist').attr('disabled', true);
+            $('#btn-login').attr('disabled', true);
         }
     });
 
-    $('#password_reg').on('keyup', function () {
+    $('#password_login').on('keyup', function () {
         var password = $(this).val();
         if(!password) {
             $(this).parent().addClass('has-error');
@@ -35,26 +35,26 @@ $(function () {
             $(this).prev().removeClass('text-danger');
         }
 
-        var username = $('#username_reg').val();
+        var username = $('#username_login').val();
 
         if(username&&password){
-            $('#btn-regist').attr('disabled', false);
+            $('#btn-login').attr('disabled', false);
         } else {
-            $('#btn-regist').attr('disabled', true);
+            $('#btn-login').attr('disabled', true);
         }
     });
 
-    $('#btn-regist').on('click', function () {
+    $('#btn-login').on('click', function () {
 
         if(loading)
             return ;
         loading = true;
 
-        var username = $('#username_reg').val();
-        var password = $('#password_reg').val();
+        var username = $('#username_login').val();
+        var password = $('#password_login').val();
         if(username&&password) {
             $.ajax({
-                url: '/api/regist',
+                url: '/api/login',
                 type: 'post',
                 data: {
                     username: username,
@@ -69,15 +69,11 @@ $(function () {
 
                     if(res.success) {
 
-                        $('#registModal').modal('hide');
 
-                        setTimeout(function () {
-                            $('#loginModal').modal('show');
-                        }, 300);
 
 
                     } else {
-                        $('#regError').html(res.error);
+
                     }
                 }
             })

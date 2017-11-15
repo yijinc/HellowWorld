@@ -5,7 +5,7 @@
   "main": "src/app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": " set NODE_ENV=develop && node src/app.js"
+    "start": " export NODE_ENV=develop && node src/app.js"
   },
   "repository": {
     "type": "git",
