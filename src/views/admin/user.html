@@ -1,12 +1,20 @@
 
-
+<!--继承父模版-->
 {{extend './common.html'}}
 
+<!--父模板插入块-->
 {{block 'content'}}
 
 
-<table class="table table-bordered">
-    <thead>
+<!--包含子模板-->
+<% include('./common_header.html', user ) %>
+
+
+
+{{if user.isAdmin}}
+<div class="container">
+    <table class="table table-bordered">
+        <thead>
         <tr>
             <th>序号</th>
             <th>用户名</th>
@@ -14,10 +22,10 @@
             <th>注册时间</th>
             <th>操作</th>
         </tr>
-    </thead>
-    <tbody>
+        </thead>
+        <tbody>
 
-    {{each users}}
+        {{each users}}
 
         <tr>
             <td>{{ (page-1)*pageSize + $index+1}}</td>
@@ -27,17 +35,22 @@
             <td><button class="btn btn-warning">修改</button><button class="btn btn-danger">删除</button></td>
         </tr>
 
-    {{/each}}
+        {{/each}}
 
-    </tbody>
+        </tbody>
 
-</table>
+    </table>
 
 
-<ul class="pager">
-    <li class="previous {{page==1?'disabled':''}}"><a href="./user?page={{page-1}}&pageSize={{pageSize}}"><span aria-hidden="true">&larr;</span> Older</a></li>
-    <li class="next {{page==totalPage?'disabled':''}}"><a href="./user?page={{page+1}}&pageSize={{pageSize}}">Newer <span aria-hidden="true">&rarr;</span></a></li>
-</ul>
+    <ul class="pager">
+        <li class="previous {{page==1?'disabled':''}}"><a href="./user?page={{page-1}}&pageSize={{pageSize}}"><span aria-hidden="true">&larr;</span> Older</a></li>
+        <li class="next {{page==totalPage?'disabled':''}}"><a href="./user?page={{page+1}}&pageSize={{pageSize}}">Newer <span aria-hidden="true">&rarr;</span></a></li>
+    </ul>
+
+</div>
+
+{{/if}}
+
 
 <script type="text/javascript">
     $('ul.pager>li').on('click', function () {

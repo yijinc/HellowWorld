@@ -7,6 +7,12 @@ var User = require('../models/User');
 
 exports.list = function(req, res){
 
+    if(!req.cookies.user || req.cookies.user.isAdmin===false) {
+        res.redirect('/');
+        return;
+    }
+
+    console.log(req.cookies.user);
     var page = req.query.page || 1;
     var pageSize = req.query.pageSize || 5 ;
 
@@ -26,7 +32,8 @@ exports.list = function(req, res){
                     users: docs,
                     page: page,
                     pageSize: pageSize,
-                    totalPage: Math.ceil(total/pageSize)
+                    totalPage: Math.ceil(total/pageSize),
+                    user: req.cookies['user']
                 });
 
             });
@@ -116,6 +123,16 @@ exports.login = function (req, res) {
 
         }
     });
+};
+
+
+exports.logout = function (req, res) {
+    res.clearCookie('user');
+    // res.redirect('/');
+    res.send({
+        success: true,
+        data: '退出成功'
+    })
 };
 
 exports.update = function(req, res){

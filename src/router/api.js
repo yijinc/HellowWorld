@@ -14,6 +14,8 @@ router.post('/login', user.login);
 
 router.post('/regist', user.insert);
 
+router.delete('/logout', user.logout);
+
 
 // 定义 about 页面的路由
 router.get('/about', function(req, res) {
