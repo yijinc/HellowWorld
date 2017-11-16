@@ -30,7 +30,16 @@ app.use(cookieParser());
 
 app.all('/', function (req, res, next) {
     console.log('Accessing the secret section ...');
-    console.log('Cookies: ', typeof req.cookies);
+    console.log(req.cookies.user);
+    if(req.cookies['user']&& req.cookies['user'].isLogin) {
+        res.render('index.html', {
+            user: req.cookies['user']
+        });
+        return;
+    }
+    console.log(req.cookies);
+
+
     next(); // pass control to the next handler
 });
 
@@ -47,12 +56,8 @@ app.use('/admin', require('./router/admin'));
 
 
 app.get('/', function (req, res) {
-    res.render('index.html', {
-        user: {
-            name: 'aui',
-            tags: ['art', 'template', 'nodejs']
-        }
-    });
+    console.log(222);
+    res.render('index.html');
 });
 
 app.listen(3000);

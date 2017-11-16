@@ -69,11 +69,10 @@ $(function () {
 
                     if(res.success) {
 
-
-
+                        window.location.reload();
 
                     } else {
-
+                        $('#logError').html(res.error);
                     }
                 }
             })

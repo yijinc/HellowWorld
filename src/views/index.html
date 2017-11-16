@@ -11,13 +11,24 @@
 </head>
 <body>
 <h1>欢迎光临，我的博客</h1>
-{{if user}}
-<h2>{{user.name}}</h2>
 
+{{if user}}
+<h2>{{user.username}}</h2>
+
+
+        {{if user.isAdmin}}
+            <a href="admin/user">进入后台管理</a>
+        {{/if}}
+
+{{/if}}
+
+
+
+
+
+{{if !user}}
 <!-- 按钮触发注册模态框 -->
 <button class="btn btn-primary" data-toggle="modal" data-target="#registModal">注册</button>
-<button class="btn btn-primary" data-toggle="modal" data-target="#loginModal">登录</button>
-
 <!-- 注册模态框（Modal） -->
 <div class="modal fade" data-backdrop="false"  id="registModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -50,7 +61,7 @@
 </div>
 
 
-
+<button class="btn btn-primary" data-toggle="modal" data-target="#loginModal">登录</button>
 <!-- 注册模态框（Modal） -->
 <div class="modal fade" data-backdrop="false"  id="loginModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -83,5 +94,6 @@
 </div>
 
 {{/if}}
+
 </body>
 </html>

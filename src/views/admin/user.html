@@ -20,7 +20,7 @@
     {{each users}}
 
         <tr>
-            <td>{{$index+1}}</td>
+            <td>{{ (page-1)*pageSize + $index+1}}</td>
             <td>{{$value.username}}</td>
             <td>{{$value.password}}</td>
             <td>{{$value.signInDate}}</td>
@@ -32,6 +32,20 @@
     </tbody>
 
 </table>
+
+
+<ul class="pager">
+    <li class="previous {{page==1?'disabled':''}}"><a href="./user?page={{page-1}}&pageSize={{pageSize}}"><span aria-hidden="true">&larr;</span> Older</a></li>
+    <li class="next {{page==totalPage?'disabled':''}}"><a href="./user?page={{page+1}}&pageSize={{pageSize}}">Newer <span aria-hidden="true">&rarr;</span></a></li>
+</ul>
+
+<script type="text/javascript">
+    $('ul.pager>li').on('click', function () {
+        if( $(this).hasClass('disabled') ) {
+            return false;
+        }
+    })
+</script>
 
 
 {{/block}}

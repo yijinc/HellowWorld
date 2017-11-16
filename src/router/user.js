@@ -7,16 +7,32 @@ var User = require('../models/User');
 
 exports.list = function(req, res){
 
-    User.find({}, function (err, docs) {
-        if(err)
-            console.log('查找全部用户失败',err);
+    var page = req.query.page || 1;
+    var pageSize = req.query.pageSize || 5 ;
 
-        res.render('admin/user.html', {
-            users: docs
-        });
+    page = parseInt(page);
+    pageSize = parseInt(pageSize);
 
+    User.count({}, function (err, total) {
+
+        // +pageSize 转换为number
+
+        User.find({}).skip( (page-1)*pageSize ).limit( pageSize ).sort( {'signInDate': -1 })
+            .exec(function (err, docs) {
+                if(err)
+                    console.log('查找全部用户失败',err);
+
+                res.render('admin/user.html', {
+                    users: docs,
+                    page: page,
+                    pageSize: pageSize,
+                    totalPage: Math.ceil(total/pageSize)
+                });
+
+            });
 
     });
+
 
 };
 
@@ -71,14 +87,14 @@ exports.login = function (req, res) {
     console.log(req.body.username, req.body.password);
 
     //检测用户名是否存在
-    User.findOne({username: req.body.username, password: req.body.password }, function (err, doc) {
+    User.findOne({username: req.body.username, password: req.body.password }, function (err, user) {
 
         if(err)
             console.log('查找用户名失败 login',err);
 
-        console.log(doc);
+        console.log(user);
 
-        if(!doc) {
+        if(!user) {
 
             res.send({
                 success: false,
@@ -87,11 +103,16 @@ exports.login = function (req, res) {
 
         } else {
 
-            req.cookie.set('user', doc, { expires: new Date(Date.now() + 900000) } );
+            res.cookie('user', {
+                "username": user.username,
+                "isLogin": true,
+                "isAdmin": user.isAdmin
+            }, { expires: new Date(Date.now() + 900000) } );
 
-            if(user.isAdmin) {
-                res.redirect('/admin/user')
-            }
+            res.send({
+                success: true,
+                data: '登录成功'
+            })
 
         }
     });
