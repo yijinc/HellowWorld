@@ -5,7 +5,7 @@
 var User = require('../models/User');
 
 
-exports.list = function(req, res){
+exports.view = function(req, res){
 
     if(!req.cookies.user || req.cookies.user.isAdmin===false) {
         res.redirect('/');
@@ -44,12 +44,6 @@ exports.list = function(req, res){
 };
 
 
-exports.view = function(req, res){
-    res.render('users/view', {
-        title: 'Viewing user ' + req.user.name,
-        user: req.user
-    });
-};
 
 exports.insert = function (req, res) {
     console.log(req.body.username, req.body.password);

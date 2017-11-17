@@ -8,6 +8,7 @@ var express = require('express');
 var router = express.Router();
 
 var user = require('./user');
+var label = require('./label');
 
 
 router.post('/login', user.login);
@@ -15,6 +16,9 @@ router.post('/login', user.login);
 router.post('/regist', user.insert);
 
 router.delete('/logout', user.logout);
+
+router.put('/label', label.insert);
+router.delete('/label/:id', label.delete);
 
 
 // 定义 about 页面的路由

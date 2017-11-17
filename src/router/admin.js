@@ -6,15 +6,16 @@ var express = require('express');
 var router = express.Router();
 
 var user = require('./user');
+var label = require('./label');
 
 
-router.get('/user', user.list);
+router.get('/user', user.view);
 
 
-router.get('/article', user.list);
+router.get('/article', user.view);
 
 
-router.get('/user', user.list);
+router.get('/label', label.view);
 
 
 module.exports = router;

@@ -5,3 +5,25 @@ header.navbar-static-top {
 
 .bs-docs-nav .navbar-header .navbar-toggle { border-color: #ccc }
 .bs-docs-nav .navbar-toggle .icon-bar { background-color: #ccc }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.label-box  > .label { padding: 8px 19px; margin: 6px 10px; display: inline-block; }
+.label-box  > .label.label-info { cursor: pointer }
+.label-box  > .label > a{ width: 0; text-decoration: none; display: inline-block; overflow: hidden; transition: width 2s ease; position: relative; left: 6px }
+.label-box  > .label:hover > a{ width: auto}
