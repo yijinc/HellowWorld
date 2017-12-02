@@ -55,10 +55,10 @@ app.use(function(err, req, res, next) {
 // app.use('/', apiRouter);
 app.use('/api',  require('./router/api'));
 app.use('/admin', require('./router/admin'));
+app.use('/article', require('./router/article'));
 
 
 app.get('/', function (req, res) {
-    console.log(222);
     res.render('index.html');
 });
 

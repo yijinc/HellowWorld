@@ -13,12 +13,15 @@
 <h1>欢迎光临，我的博客</h1>
 
 {{if user}}
-<h2>{{user.username}}</h2>
+        
+        <h2>{{user.username}}</h2>
 
 
         {{if user.isAdmin}}
             <a href="admin/user">进入后台管理</a>
         {{/if}}
+
+        <p><a href="article">写博客</a></p>
 
 {{/if}}
 

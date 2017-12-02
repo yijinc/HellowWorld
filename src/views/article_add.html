@@ -1,0 +1,50 @@
+
+<!--继承父模版-->
+{{extend './admin/common.html'}}
+
+
+{{block 'head'}}
+    <title>写博客</title>
+    <link rel="stylesheet" href="../public/styles/admin_common.css">
+{{/block}}
+
+
+<!--父模板插入块-->
+{{block 'content'}}
+
+    {{if user}}
+        welcome {{user.username}}
+    {{/if}}
+
+    <div class="container">
+        <h1>发表博客</h1>
+        <form name="articleForm" action="article/add" method="post">
+            <div class="form-group">
+                <label for="article-title">标题</label>
+                <input type="text" name="title" class="form-control" id="article-title" placeholder="博客标题">
+            </div>
+            <div class="form-group">
+                <label for="article-label">标签</label>
+                <select class="form-control" name="label" id="article-label">
+                    {{each labels as label index}}
+                        <option value="{{ label._id }}">  {{ label.name }} </option>
+                    {{/each}}
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="article-content">正文</label>
+                <textarea id="article-content" name="content" class="form-control" rows="10"></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary "> 发布 </button>
+        </form>
+    </div>
+
+
+<!--<script type="text/javascript">-->
+<!--//    console.log(document.forms.articleForm.title.value)-->
+<!--</script>-->
+
+
+
+{{/block}}

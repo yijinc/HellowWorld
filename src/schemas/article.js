@@ -7,20 +7,21 @@ module.exports = new mongoose.Schema({
     title     : String,
 
     //作者
-    author    : String,
+    author    : {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
+    },
+
+    //标签
+    label    : {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Label'
+    },
 
     //内容
     content   : String,
 
-    //评论
-    comments   :  String,
-
-    //注册日期
-    signInDate   : { type: Date, default: Date.now },
-
-    meta: {
-        votes: Number,
-        favs:  Number
-    }
+    //发布时间
+    time      : { type: Date,  default: Date.now }
 
 });
