@@ -107,7 +107,8 @@ exports.login = function (req, res) {
             res.cookie('user', {
                 "username": user.username,
                 "isLogin": true,
-                "isAdmin": user.isAdmin
+                "isAdmin": user.isAdmin,
+                "id": user._id
             }, { expires: new Date(Date.now() + 900000) } );
 
             res.send({

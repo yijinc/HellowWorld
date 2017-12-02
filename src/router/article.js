@@ -27,12 +27,13 @@ var articleUtil = {
         /*
         * req.body.label 值为 '"xxx"' 需要去除前后引号
         * */
+        console.log('author', req.cookies['user']['id']);
         new Article({
             title: req.body.title,
             label: req.body.label.replace(/\"/g,""),
             content: req.body.content,
             time: Date.now(),
-            author: req.cookies.user._id
+            author: req.cookies.user.id
         }).save(function (err, article) {
 
             if(err)
