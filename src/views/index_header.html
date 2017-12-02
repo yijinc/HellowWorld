@@ -1,0 +1,40 @@
+<header class="navbar navbar-static-top bs-docs-nav" id="top">
+	<div class="container">
+		<div class="navbar-header">
+			<a href="../" class="navbar-brand">博客系统</a>
+		</div>
+		<nav id="bs-navbar" class="collapse navbar-collapse">
+			<ul class="nav navbar-nav navbar-right">
+				{{if $data && $data.username }}
+					<li><a href="http://www.bootcss.com/" >         <%=$data.username %>      </a></li>
+					<li><a href="javascript:;" id="logout" >退出</a></li>
+				{{/if}}
+
+				{{if ($data && !$data.username)|| !$data}}
+					<li><a href="javascript:;" data-toggle="modal" data-target="#registModal">注册</a></li>
+					<li><a href="javascript:;" data-toggle="modal" data-target="#loginModal">登录</a></li>
+				{{/if}}
+			</ul>
+		</nav>
+	</div>
+</header>
+
+<script type="text/javascript">
+	$(function () {
+        var loading = false;
+        $('#logout').on('click', function () {
+            if(loading)
+                return false;
+            loading = true;
+            $.ajax({
+                url: '/api/logout',
+                type: 'delete',
+
+                success: function (res) {
+                    if(res.success)
+                        window.location.reload()
+                }
+            })
+        })
+    });
+</script>
