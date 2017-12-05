@@ -14,7 +14,7 @@ exports.view = function(req, res){
 
     console.log(req.cookies.user);
     var page = req.query.page || 1;
-    var pageSize = req.query.pageSize || 5 ;
+    var pageSize = req.query.pageSize || 10 ;
 
     page = parseInt(page);
     pageSize = parseInt(pageSize);

@@ -21,7 +21,7 @@ router.get('/article', function (req, res) {
     }
 
     var page = req.query.page || 1;
-    var pageSize = req.query.pageSize || 5 ;
+    var pageSize = req.query.pageSize || 10 ;
 
     page = parseInt(page);
     pageSize = parseInt(pageSize);

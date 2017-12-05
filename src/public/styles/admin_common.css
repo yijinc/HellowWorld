@@ -16,7 +16,7 @@ header.navbar-static-top {
 footer.footer {
     background-color: #eee;
     width: 100%;
-    /*position: absolute;*/
+    position: absolute;
     bottom: 0;
 }
 
