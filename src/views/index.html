@@ -16,22 +16,10 @@
     <div class="main-left pull-left">
         <% include('./article_list.html') %>
     </div>
-    <div class="main-right pull-right hidden-xs"></div>
+    <div class="main-right pull-right hidden-xs">
+        <% include('./index_info.html', user) %>
+    </div>
 </div>
-
-{{if user}}
-        
-        <h2>{{user.username}}</h2>
-
-
-        {{if user.isAdmin}}
-            <a href="admin/user">进入后台管理</a>
-        {{/if}}
-
-        <p><a href="article">写博客</a></p>
-
-{{/if}}
-
 
 
 {{if !user}}

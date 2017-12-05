@@ -1,0 +1,49 @@
+<div class="info" id="right-info">
+	<div class="head">
+		<!--<img src="" alt="">-->
+		<div style="width: 80px; height: 80px; border-radius: 50%; background-color: #985f0d; position: absolute; left: 50%; top: 50%; margin-top: -40px; margin-left: -40px;"></div>
+	</div>
+	<div class="info-user">
+
+		{{if $data && $data.username }}
+			<p style="margin: 20px 10px;">
+
+				欢迎光临 &nbsp;&nbsp;&nbsp;&nbsp; <%=$data.username %>
+
+				{{if $data.isAdmin}}
+					<a class="pull-right" href="admin/user">进入后台管理</a>
+				{{/if}}
+
+			</p>
+			<p style="margin-left: 10px;">您在博客已经100天了   <a href="article" class="pull-right" style="margin-right: 10px">写篇博客</a> </p>
+		{{/if}}
+
+		{{if ($data && !$data.username)|| !$data}}
+			<p style="margin: 20px 10px">你还没有登录? </p>
+			<p class="text-center">
+				<a href="javascript:;" data-toggle="modal" data-target="#registModal">注册</a>
+				<span style="margin: 0 10px">|</span>
+				<a href="javascript:;" data-toggle="modal" data-target="#loginModal">登录</a>
+			</p>
+		{{/if}}
+	</div>
+</div>
+
+
+
+<script>
+	$(function () {
+	    var rightInfo = document.getElementById('right-info');
+	    var oTop = rightInfo.offsetTop;
+        document.addEventListener('scroll', function () {
+            var scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
+            if( scrollTop >= oTop) {
+                rightInfo.style.position = 'fixed';
+                rightInfo.style.top = 0;
+            } else {
+                rightInfo.style.position = '';
+                rightInfo.style.top = 'auto'
+            }
+        });
+    })
+</script>
