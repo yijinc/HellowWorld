@@ -1,21 +1,53 @@
 <div id="article-list">
-	<div class="panel panel-info">
-		<div class="panel-heading">
-			<h3 class="panel-title">Panel title</h3>
-		</div>
-		<div class="panel-body">
-			Panel content
-		</div>
-		<div class="panel-footer">Panel footer</div>
-	</div>
+
 </div>
 
 
 <script type="text/javascript">
 	$(function () {
-	    // TODO 首页一进来请求article
-		$.get('url', function (res, status, xhr) {
-			console.log(res, status,xhr);
-        }, 'json');
+		var page = 1;
+		var pageSize = 10;
+		var total = 0;
+
+		getData();
+
+		document.addEventListener('scroll', function (e) {
+		    var scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
+			if(scrollTop + document.documentElement.clientHeight >= document.documentElement.offsetHeight ) {
+			    if(++page * pageSize >= total){
+			        return;
+			    };
+			    getData();
+			}
+        });
+
+
+		function getData() {
+            $.get('/api/article', { page: page, pageSize: pageSize }, function (res, status, xhr) {
+                console.log(res, status,xhr);
+                if(res.success) {
+                    total = res.totalCount;
+                    var divObj = document.createElement('div');
+                    for( var i in res.articles) {
+                        divObj.innerHTML += '<div class="panel panel-info"> \
+                        <div class="panel-heading"> \
+                            <h3 class="panel-title"> ' + res.articles[i].title + '</h3> \
+                        </div> \
+                        <div class="panel-body">' + res.articles[i].content +'Panel content </div> \
+                        <div class="panel-footer">\
+                            <span class="label label-success">'+ res.articles[i].label.name +'</span> \
+                            <span class="pull-right">'+ formatDate(res.articles[i].time) +'</span> \
+                        </div> \
+                    </div>' ;
+                    }
+                    document.getElementById('article-list').appendChild(divObj);
+                }
+            }, 'json');
+        }
+
+		function formatDate(x) {
+			var date = new Date(x);
+			return date.getFullYear()+'年' + (date.getMonth()+1) +'月' + date.getDay() + '日 ' + date.getHours() + ':' + date.getMinutes()
+        }
     });
 </script>
