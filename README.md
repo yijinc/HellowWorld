@@ -2,7 +2,6 @@
 
 > 一个用 express + mongoose 的小博客系统
 
----
 
 - 采用bootstrap样式库，artTemplate模板
 
